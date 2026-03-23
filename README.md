@@ -1,13 +1,3 @@
----
-AIGC:
-    ContentProducer: Minimax Agent AI
-    ContentPropagator: Minimax Agent AI
-    Label: AIGC
-    ProduceID: "00000000000000000000000000000000"
-    PropagateID: "00000000000000000000000000000000"
-    ReservedCode1: 304502200bb017fb3e8e13a1021bc90a54548a5c3f6ef539d46243a267ed2849a876be49022100cefa7c139ce1af1ca35dcae7eaaa2c34cc6192d806db7e96597fc7ddfed788d0
-    ReservedCode2: 30450221008f7fa13bf0163f00937497022d8ec15d35d48bf683035e6ee752c5f315dbd6ff0220607d58e18f5e6acb18c1da55a6916081b4004e3c583e3b0c8399da3d75e6b3bc
----
 
 # 基于多模态内容理解的全自动化数据分析可视化 Agent 系统
 
