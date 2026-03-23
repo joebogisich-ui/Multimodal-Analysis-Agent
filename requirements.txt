@@ -1,0 +1,62 @@
+# Core Framework
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# Agent & AI
+langchain==0.1.4
+langchain-openai==0.0.5
+langchain-core==0.1.10
+openai==1.10.0
+anthropic==0.8.1
+
+# Data Processing
+pandas==2.2.0
+numpy==1.26.3
+scipy==1.12.0
+scikit-learn==1.4.0
+
+# Multimodal Processing
+Pillow==10.2.0
+opencv-python==4.9.0.80
+librosa==0.10.1
+moviepy==1.0.3
+transformers==4.37.2
+torch==2.2.0
+torchvision==0.17.0
+
+# Visualization
+plotly==5.18.0
+matplotlib==3.8.2
+seaborn==0.13.1
+wordcloud==1.9.3
+pyecharts==2.0.4
+
+# API & Web
+httpx==0.26.0
+python-multipart==0.0.6
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+
+# Storage & Cache
+redis==5.0.1
+aiofiles==23.2.1
+
+# Utilities
+python-dotenv==1.0.0
+pyyaml==6.0.1
+python-dateutil==2.8.2
+python-magic==0.4.27
+
+# Testing
+pytest==8.0.0
+pytest-asyncio==0.23.3
+pytest-cov==4.1.0
+httpx==0.26.0
+
+# Development
+black==24.1.1
+flake8==7.0.0
+mypy==1.8.0
+isort==5.13.2
