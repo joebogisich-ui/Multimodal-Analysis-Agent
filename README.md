@@ -38,7 +38,7 @@
 首先，克隆项目仓库到本地：
 
 ```bash
-git clone https://github.com/yourusername/multimodal-analysis-agent.git
+git clone https://github.com/joebogisich-ui/multimodal-analysis-agent.git
 cd multimodal-analysis-agent
 ```
 
