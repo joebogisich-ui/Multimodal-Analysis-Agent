@@ -8,10 +8,22 @@ from backend.agents.orchestrator import AgentOrchestrator
 from backend.agents.analyzer import DataAnalyzer
 from backend.agents.visualizer import ChartVisualizer
 from backend.agents.planner import TaskPlanner
+from backend.agents.feedback_loop import (
+    FeedbackLoop,
+    ResultValidator,
+    ErrorDetector,
+    SelfCorrector,
+    feedback_loop,
+)
 
 __all__ = [
     "AgentOrchestrator",
     "DataAnalyzer",
     "ChartVisualizer",
     "TaskPlanner",
+    "FeedbackLoop",
+    "ResultValidator",
+    "ErrorDetector",
+    "SelfCorrector",
+    "feedback_loop",
 ]

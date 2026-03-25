@@ -18,6 +18,7 @@ from backend.core.exceptions import (
     TaskTimeoutError,
     ValidationError,
 )
+from backend.agents.feedback_loop import feedback_loop, FeedbackLoop
 
 logger = get_logger(__name__)
 
@@ -26,6 +27,7 @@ class TaskStatus(str, Enum):
     """任务状态枚举"""
     PENDING = "pending"
     RUNNING = "running"
+    VALIDATING = "validating"
     COMPLETED = "completed"
     FAILED = "failed"
     CANCELLED = "cancelled"
@@ -150,12 +152,13 @@ class AgentOrchestrator:
         logger.info(f"创建新任务: {task.id}, 类型: {task_type.value}")
         return task
 
-    async def execute_task(self, task_id: str) -> Dict[str, Any]:
+    async def execute_task(self, task_id: str, enable_feedback_loop: bool = True) -> Dict[str, Any]:
         """
         执行指定任务
 
         Args:
             task_id: 任务ID
+            enable_feedback_loop: 是否启用反馈闭环
 
         Returns:
             任务执行结果
@@ -188,13 +191,53 @@ class AgentOrchestrator:
                     timeout=settings.agent.timeout
                 )
 
-            task.result = result
-            task.status = TaskStatus.COMPLETED
-            task.progress = 100
+            task.status = TaskStatus.VALIDATING
+            task.progress = 80
+            logger.info(f"任务执行中，启用反馈闭环验证: {task_id}")
+
+            # 启用反馈闭环验证
+            if enable_feedback_loop:
+                feedback_result = await feedback_loop.execute(
+                    task_id=task_id,
+                    task_type=task.task_type.value,
+                    input_data=task.input_data,
+                    output_data=result,
+                    parameters=task.parameters,
+                    max_attempts=task.parameters.get("max_retries", 3)
+                )
+
+                if feedback_result["status"] == "passed":
+                    task.result = result
+                    task.status = TaskStatus.COMPLETED
+                    task.progress = 100
+                    task.metadata["feedback"] = feedback_result
+                    logger.info(f"任务执行完成并通过反馈验证: {task_id}")
+                elif feedback_result["status"] == "corrected":
+                    # 使用修正后的参数重新执行
+                    corrected_params = feedback_result.get("final_parameters", {})
+                    task.parameters.update(corrected_params)
+                    task.metadata["feedback"] = feedback_result
+                    logger.info(f"任务执行完成，应用了参数修正: {task_id}")
+                    result["corrected"] = True
+                    result["corrections"] = feedback_result.get("corrections", [])
+                    task.result = result
+                    task.status = TaskStatus.COMPLETED
+                    task.progress = 100
+                else:
+                    task.result = feedback_result.get("validation_results")
+                    task.status = TaskStatus.FAILED
+                    task.error = Exception("反馈验证失败")
+                    task.metadata["feedback"] = feedback_result
+                    logger.error(f"任务反馈验证失败: {task_id}")
+            else:
+                task.result = result
+                task.status = TaskStatus.COMPLETED
+                task.progress = 100
+
             task.completed_at = datetime.now()
             logger.info(f"任务执行完成: {task_id}")
 
-            return result
+            return task.result
 
         except asyncio.TimeoutError:
             task.status = TaskStatus.FAILED

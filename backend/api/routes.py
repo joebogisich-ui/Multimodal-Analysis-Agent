@@ -17,6 +17,7 @@ from backend.agents.orchestrator import orchestrator, TaskType, TaskStatus
 from backend.agents.analyzer import DataAnalyzer
 from backend.agents.visualizer import ChartVisualizer, DashboardGenerator
 from backend.agents.planner import TaskPlanner
+from backend.agents.feedback_loop import feedback_loop
 from backend.processors import TextProcessor, ImageProcessor, AudioProcessor, VideoProcessor
 
 logger = get_logger(__name__)
@@ -351,3 +352,145 @@ async def get_chart_types():
             {"id": "wordcloud", "name": "词云图", "category": "文本"},
         ]
     }
+
+
+@router.post("/feedback/validate")
+async def validate_result(
+    data: Dict[str, Any],
+    task_type: str = Body(..., description="任务类型")
+):
+    """
+    验证分析结果
+
+    对输出结果进行多级别验证，检查数据质量、完整性和一致性
+    """
+    try:
+        from backend.agents.feedback_loop import ValidationLevel
+        result = await feedback_loop.validator.validate(
+            output_data=data,
+            task_type=task_type,
+            level=ValidationLevel.INTERMEDIATE
+        )
+        return {
+            "validation_results": [
+                {
+                    "rule": r.rule_name,
+                    "passed": r.passed,
+                    "message": r.message,
+                    "severity": r.severity
+                }
+                for r in result
+            ],
+            "passed": all(r.passed for r in result),
+            "total_rules": len(result),
+            "passed_rules": sum(1 for r in result if r.passed),
+            "failed_rules": sum(1 for r in result if not r.passed)
+        }
+    except Exception as e:
+        logger.error(f"验证失败: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/feedback/detect-errors")
+async def detect_errors(
+    data: Dict[str, Any]
+):
+    """
+    检测结果错误
+
+    识别分析结果中的异常和错误模式
+    """
+    try:
+        errors = await feedback_loop.error_detector.detect_errors(data)
+        return {
+            "errors": errors,
+            "total_errors": len(errors),
+            "has_errors": len(errors) > 0,
+            "error_patterns": [e.get("pattern") for e in errors]
+        }
+    except Exception as e:
+        logger.error(f"错误检测失败: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/feedback/correct")
+async def correct_result(
+    task_id: str = Body(...),
+    task_type: str = Body(...),
+    input_data: Any = Body(...),
+    output_data: Any = Body(...),
+    parameters: Dict[str, Any] = Body(...),
+    max_attempts: int = Body(default=3)
+):
+    """
+    自我修正结果
+
+    根据错误检测结果自动调整参数并重新执行
+    """
+    try:
+        from backend.agents.feedback_loop import FeedbackContext
+        context = FeedbackContext(
+            task_id=task_id,
+            task_type=task_type,
+            input_data=input_data,
+            output_data=output_data,
+            parameters=parameters,
+            max_attempts=max_attempts
+        )
+
+        errors = await feedback_loop.error_detector.detect_errors(output_data)
+        correction_result = await feedback_loop.self_corrector.correct(context, errors)
+
+        return {
+            "task_id": task_id,
+            "correction_result": correction_result,
+            "detected_errors": len(errors),
+            "corrections_applied": correction_result.get("corrections_applied", 0)
+        }
+    except Exception as e:
+        logger.error(f"结果修正失败: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/feedback/metrics")
+async def get_feedback_metrics():
+    """
+    获取反馈性能指标
+
+    查看反馈闭环系统的性能统计
+    """
+    try:
+        metrics = feedback_loop.get_performance_metrics()
+        return metrics
+    except Exception as e:
+        logger.error(f"获取性能指标失败: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/feedback/execute-loop")
+async def execute_feedback_loop(
+    task_id: str = Body(...),
+    task_type: str = Body(...),
+    input_data: Any = Body(...),
+    output_data: Any = Body(...),
+    parameters: Dict[str, Any] = Body(...),
+    max_attempts: int = Body(default=3)
+):
+    """
+    执行完整反馈闭环
+
+    协调验证、错误检测和自我修正流程
+    """
+    try:
+        result = await feedback_loop.execute(
+            task_id=task_id,
+            task_type=task_type,
+            input_data=input_data,
+            output_data=output_data,
+            parameters=parameters,
+            max_attempts=max_attempts
+        )
+        return result
+    except Exception as e:
+        logger.error(f"反馈闭环执行失败: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
