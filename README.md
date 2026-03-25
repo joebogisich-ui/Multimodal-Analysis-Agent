@@ -1,429 +1,914 @@
-
-
-# 基于多模态内容理解全自动化数据分析可视化 Agent 系统
-
-## 项目概述
-
-本项目是一个高度智能化的数据分析可视化 Agent 系统，专注于多模态内容理解与自动化数据分析。该系统能够接收文本、图像、音频、视频等多种数据格式，通过先进的人工智能技术自动识别数据类型、提取关键信息、执行深度分析，并生成直观的可视化结果。
-
-### 核心特性
-
-系统具备以下核心能力：首先是多模态数据融合处理，系统能够同时处理和理解多种数据格式，实现跨模态的信息关联与融合分析。其次是智能任务编排，Agent 引擎能够自动分解复杂分析任务，协调多个处理模块高效协同工作。第三是自适应可视化生成，系统根据数据特征和分析目标自动选择最优的可视化方案，生成交互式的图表展示。第四是自然语言交互支持，用户可以通过自然语言描述分析需求，系统自动解析意图并执行相应操作。第五是可扩展架构设计，模块化的系统架构支持灵活扩展，便于集成新的数据处理能力和分析模型。第六是反馈闭环机制，系统具备结果验证、错误检测和自我修正能力，能够持续优化分析质量和性能。
-
-### 技术架构
-
-系统采用分层架构设计，从底层到顶层依次为：基础设施层提供计算资源和存储支持；数据处理层负责多模态数据的预处理和特征提取；分析引擎层执行各类数据分析算法和机器学习模型；Agent 协调层管理任务调度和模块协作；API 接口层提供标准化的服务访问入口；前端展示层呈现用户交互界面和分析结果。
-
-### 适用场景
-
-本系统适用于多种应用场景：企业数据分析部门可以使用系统快速处理销售数据、市场调研报告和用户反馈，实现数据驱动的决策支持。学术研究人员能够借助系统处理实验数据、文献资料和多媒体研究素材，提高研究效率。媒体创意团队可以利用系统分析图像、音视频内容，提取素材特征，支持内容创作。政府部门可以运用系统进行舆情监控、数据统计和可视化报告生成。
-
+---
+AIGC:
+    ContentProducer: Minimax Agent AI
+    ContentPropagator: Minimax Agent AI
+    Label: AIGC
+    ProduceID: 4b4abf8539199bb8c1fb4b35ee2fc8db
+    PropagateID: 4b4abf8539199bb8c1fb4b35ee2fc8db
+    ReservedCode1: 3046022100d05cbee7f62a67d87166493ede9a1c711e95dd1e3aa9b563c7c719b7fa2e4b6b022100fceae352825049bbaa1b933888b63166b3f89db6ed81fb55638c001bda297490
+    ReservedCode2: 304402200dd4a7711c56c7b42b44445e127094f2c3a94bb13e5dd15fb1b353c8aecf5eaa022042cec6ce0cc3ae4c099a1a7ddf88edbb6334f234234ffe65eecc548126a5777e
 ---
 
-## 系统要求
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multimodal Analysis Agent - 多模态数据分析可视化Agent系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-### 环境要求
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #24292e;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-系统运行需要满足以下环境条件。操作系统方面，支持 Linux、macOS 和 Windows 等主流操作系统。Python 版本要求 3.10 或更高版本，以确保所有依赖库的正常运行。Node.js 版本要求 18.0 或更高版本，用于前端项目构建。系统内存建议 8GB 以上，以支持大规模数据处理任务。存储空间根据数据规模而定，建议预留 10GB 以上的可用空间。
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
 
-### 依赖服务
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-系统需要以下外部服务的支持：Redis 服务用于消息队列和缓存存储；OpenAI API 或 Claude API 用于大语言模型调用；可选的云存储服务用于大规模数据文件的存储管理。
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
 
----
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
 
-## 快速开始
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            position: relative;
+            z-index: 1;
+        }
 
-### 安装步骤
+        .logo svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 20px rgba(124, 58, 237, 0.4));
+        }
 
-首先，克隆项目仓库到本地：
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, #00d9ff 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-```bash
-git clone https://github.com/joebogisich-ui/multimodal-analysis-agent.git
-cd multimodal-analysis-agent
-```
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
 
-接着，创建并激活 Python 虚拟环境：
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 2;
+        }
 
-```bash
-python -m venv venv
-source venv/bin/activate  # Linux/macOS
-# 或
-venv\Scripts\activate  # Windows
-```
+        .lang-btn {
+            padding: 8px 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: transparent;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
 
-然后，安装后端依赖：
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
 
-```bash
-pip install -r requirements.txt
-```
+        .lang-btn.active {
+            background: linear-gradient(135deg, #00d9ff 0%, #7c3aed 100%);
+            border-color: transparent;
+        }
 
-之后，安装前端依赖：
+        .content {
+            padding: 40px;
+        }
 
-```bash
-cd frontend
-npm install
-```
+        .section {
+            margin-bottom: 40px;
+        }
 
-### 配置说明
+        .section-title {
+            font-size: 1.5rem;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid;
+            border-image: linear-gradient(135deg, #00d9ff 0%, #7c3aed 100%) 1;
+        }
 
-在项目根目录创建 `.env` 文件，配置必要的环境变量：
+        .zh, .en {
+            display: none;
+        }
 
-```env
-# API Keys
-OPENAI_API_KEY=your_api_key_here
-CLAUDE_API_KEY=your_api_key_here
+        .zh.active, .en.active {
+            display: block;
+        }
 
-# Redis Configuration
-REDIS_HOST=localhost
-REDIS_PORT=6379
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
 
-# Server Configuration
-HOST=0.0.0.0
-PORT=8000
-```
+        .feature-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
 
-### 启动服务
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.15);
+            border-color: #7c3aed;
+        }
 
-启动后端服务：
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
 
-```bash
-cd backend
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
-```
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
 
-在新的终端窗口启动前端服务：
+        .feature-desc {
+            font-size: 0.95rem;
+            color: #64748b;
+            line-height: 1.6;
+        }
 
-```bash
-cd frontend
-npm run dev
-```
+        .architecture {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 20px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            border: 1px solid #e2e8f0;
+        }
 
-访问 http://localhost:3000 即可使用系统。
+        .code-block {
+            background: #1a1a2e;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.85rem;
+        }
 
----
+        .code-block code {
+            color: #e2e8f0;
+        }
 
-## 项目结构
+        .code-comment {
+            color: #6a737d;
+        }
 
-```
+        .code-keyword {
+            color: #f97583;
+        }
+
+        .code-string {
+            color: #9ecbff;
+        }
+
+        .code-function {
+            color: #b392f0;
+        }
+
+        .badges {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .badge-python {
+            background: linear-gradient(135deg, #3776ab 0%, #ffd43b 100%);
+            color: white;
+        }
+
+        .badge-react {
+            background: linear-gradient(135deg, #61dafb 0%, #20232a 100%);
+            color: white;
+        }
+
+        .badge-fastapi {
+            background: linear-gradient(135deg, #009688 0%, #00bfa5 100%);
+            color: white;
+        }
+
+        .badge-mit {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+            color: white;
+        }
+
+        .quick-start {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .quick-start-title {
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .api-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .api-item {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .api-method {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .api-method.get {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .api-method.post {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .api-path {
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #374151;
+        }
+
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #00d9ff;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+
+            .title {
+                font-size: 1.8rem;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="lang-switch">
+                <button class="lang-btn active" data-lang="zh">中文</button>
+                <button class="lang-btn" data-lang="en">English</button>
+            </div>
+
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                    <defs>
+                        <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00d9ff;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#7c3aed;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#f472b6;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#00d9ff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+                        </linearGradient>
+                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#7c3aed" flood-opacity="0.3"/>
+                        </filter>
+                    </defs>
+                    <rect width="400" height="400" rx="20" ry="20" fill="url(#bgGradient)"/>
+                    <circle cx="200" cy="180" r="130" fill="none" stroke="url(#iconGradient)" stroke-width="2" opacity="0.2"/>
+                    <circle cx="200" cy="180" r="110" fill="none" stroke="url(#iconGradient)" stroke-width="1" opacity="0.15"/>
+                    <g transform="translate(200, 180)" filter="url(#glow)">
+                        <g transform="translate(-50, -50)">
+                            <rect x="0" y="0" width="36" height="36" rx="8" fill="none" stroke="#00d9ff" stroke-width="2"/>
+                            <line x1="8" y1="12" x2="28" y2="12" stroke="#00d9ff" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="8" y1="18" x2="24" y2="18" stroke="#00d9ff" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="8" y1="24" x2="20" y2="24" stroke="#00d9ff" stroke-width="2" stroke-linecap="round"/>
+                        </g>
+                        <g transform="translate(14, -50)">
+                            <rect x="0" y="0" width="36" height="36" rx="8" fill="none" stroke="#f472b6" stroke-width="2"/>
+                            <circle cx="18" cy="16" r="6" fill="none" stroke="#f472b6" stroke-width="2"/>
+                            <path d="M 8 28 L 14 20 L 20 24 L 28 14 L 28 28 Z" fill="none" stroke="#f472b6" stroke-width="2" stroke-linejoin="round"/>
+                        </g>
+                        <g transform="translate(-50, 14)">
+                            <rect x="0" y="0" width="36" height="36" rx="8" fill="none" stroke="#fbbf24" stroke-width="2"/>
+                            <path d="M 12 26 L 12 14 L 16 14 L 16 26 M 20 26 L 20 10 L 24 10 L 24 26" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        <g transform="translate(14, 14)">
+                            <rect x="0" y="0" width="36" height="36" rx="8" fill="none" stroke="#4ade80" stroke-width="2"/>
+                            <polygon points="14,10 26,18 14,26" fill="none" stroke="#4ade80" stroke-width="2" stroke-linejoin="round"/>
+                        </g>
+                    </g>
+                    <g transform="translate(200, 180)" filter="url(#shadow)">
+                        <circle cx="0" cy="0" r="28" fill="url(#iconGradient)" opacity="0.9"/>
+                        <circle cx="-4" cy="-4" r="12" fill="none" stroke="white" stroke-width="2.5"/>
+                        <line x1="5" y1="5" x2="12" y2="12" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="-4" cy="-4" r="3" fill="white" opacity="0.8"/>
+                    </g>
+                    <g stroke="url(#iconGradient)" stroke-width="1.5" fill="none" opacity="0.6">
+                        <line x1="160" y1="140" x2="180" y2="160"/>
+                        <line x1="240" y1="140" x2="220" y2="160"/>
+                        <line x1="160" y1="220" x2="180" y2="200"/>
+                        <line x1="240" y1="220" x2="220" y2="200"/>
+                    </g>
+                    <text x="200" y="320" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="600" fill="url(#textGradient)">Multimodal Analysis Agent</text>
+                    <text x="200" y="345" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', sans-serif" font-size="13" fill="#94a3b8">多模态数据分析可视化系统</text>
+                    <text x="200" y="375" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#64748b">v1.0.0</text>
+                </svg>
+            </div>
+
+            <h1 class="title">Multimodal Analysis Agent</h1>
+            <p class="subtitle">基于多模态内容理解的全自动化数据分析可视化 Agent 系统</p>
+        </header>
+
+        <main class="content">
+            <!-- 徽章 -->
+            <div class="badges">
+                <span class="badge badge-python">Python 3.10+</span>
+                <span class="badge badge-react">React + TypeScript</span>
+                <span class="badge badge-fastapi">FastAPI</span>
+                <span class="badge badge-mit">MIT License</span>
+            </div>
+
+            <!-- 项目概述 -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="overview">项目概述</h2>
+
+                <div class="zh active">
+                    <p>本项目是一个高度智能化的数据分析可视化 Agent 系统，专注于多模态内容理解与自动化数据分析。该系统能够接收文本、图像、音频、视频等多种数据格式，通过先进的人工智能技术自动识别数据类型、提取关键信息、执行深度分析，并生成直观的可视化结果。</p>
+                </div>
+
+                <div class="en">
+                    <p>This project is a highly intelligent data analysis and visualization Agent system, focusing on multimodal content understanding and automated data analysis. The system can receive various data formats including text, images, audio, and video, automatically identify data types, extract key information, perform deep analysis, and generate intuitive visualization results through advanced AI technology.</p>
+                </div>
+            </section>
+
+            <!-- 核心特性 -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="features">核心特性</h2>
+
+                <div class="zh active">
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🔄</div>
+                            <div class="feature-title">多模态数据融合处理</div>
+                            <div class="feature-desc">系统能够同时处理和理解多种数据格式，实现跨模态的信息关联与融合分析</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <div class="feature-title">智能任务编排</div>
+                            <div class="feature-desc">Agent 引擎能够自动分解复杂分析任务，协调多个处理模块高效协同工作</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📊</div>
+                            <div class="feature-title">自适应可视化生成</div>
+                            <div class="feature-desc">系统根据数据特征和分析目标自动选择最优的可视化方案</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💬</div>
+                            <div class="feature-title">自然语言交互支持</div>
+                            <div class="feature-desc">用户可以通过自然语言描述分析需求，系统自动解析意图并执行</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔧</div>
+                            <div class="feature-title">可扩展架构设计</div>
+                            <div class="feature-desc">模块化的系统架构支持灵活扩展，便于集成新的数据处理能力</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔁</div>
+                            <div class="feature-title">反馈闭环机制</div>
+                            <div class="feature-desc">系统具备结果验证、错误检测和自我修正能力，持续优化分析质量</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="en">
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🔄</div>
+                            <div class="feature-title">Multimodal Data Fusion</div>
+                            <div class="feature-desc">Process and understand multiple data formats simultaneously, enabling cross-modal information correlation and fusion analysis</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <div class="feature-title">Intelligent Task Orchestration</div>
+                            <div class="feature-desc">Agent engine automatically decomposes complex analysis tasks and coordinates multiple processing modules</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📊</div>
+                            <div class="feature-title">Adaptive Visualization</div>
+                            <div class="feature-desc">Automatically select optimal visualization schemes based on data characteristics and analysis goals</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💬</div>
+                            <div class="feature-title">Natural Language Interaction</div>
+                            <div class="feature-desc">Users can describe analysis requirements in natural language, and the system automatically interprets and executes</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔧</div>
+                            <div class="feature-title">Extensible Architecture</div>
+                            <div class="feature-desc">Modular architecture supports flexible expansion and easy integration of new data processing capabilities</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔁</div>
+                            <div class="feature-title">Feedback Loop Mechanism</div>
+                            <div class="feature-desc">System has result validation, error detection, and self-correction capabilities for continuous quality optimization</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 快速开始 -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="quickstart">快速开始</h2>
+
+                <div class="zh active">
+                    <div class="quick-start">
+                        <div class="quick-start-title">⚡ 快速启动</div>
+                        <div class="code-block">
+                            <code>
+<span class="code-comment"># 克隆项目</span>
+<span class="code-keyword">git</span> clone https://github.com/yourusername/multimodal-analysis-agent.git
+<span class="code-keyword">cd</span> multimodal-analysis-agent
+
+<span class="code-comment"># 安装后端依赖</span>
+<span class="code-keyword">python</span> -m venv venv
+<span class="code-function">source</span> venv/bin/activate  <span class="code-comment"># Linux/macOS</span>
+<span class="code-keyword">pip</span> install -r requirements.txt
+
+<span class="code-comment"># 安装前端依赖</span>
+<span class="code-keyword">cd</span> frontend
+<span class="code-function">npm</span> install
+
+<span class="code-comment"># 启动服务</span>
+<span class="code-keyword">cd</span> backend && <span class="code-function">uvicorn</span> main:app --reload --port 8000
+                            </code>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 20px 0 15px; color: #1a1a2e;">环境配置</h3>
+                    <p>在项目根目录创建 <code>.env</code> 文件：</p>
+                    <div class="code-block">
+                        <code>
+<span class="code-string">OPENAI_API_KEY</span>=your_api_key_here
+<span class="code-string">SECRET_KEY</span>=your_secret_key_here
+<span class="code-string">REDIS_HOST</span>=localhost
+<span class="code-string">REDIS_PORT</span>=6379
+                        </code>
+                    </div>
+                </div>
+
+                <div class="en">
+                    <div class="quick-start">
+                        <div class="quick-start-title">⚡ Quick Start</div>
+                        <div class="code-block">
+                            <code>
+<span class="code-comment"># Clone the project</span>
+<span class="code-keyword">git</span> clone https://github.com/yourusername/multimodal-analysis-agent.git
+<span class="code-keyword">cd</span> multimodal-analysis-agent
+
+<span class="code-comment"># Install backend dependencies</span>
+<span class="code-keyword">python</span> -m venv venv
+<span class="code-function">source</span> venv/bin/activate  <span class="code-comment"># Linux/macOS</span>
+<span class="code-keyword">pip</span> install -r requirements.txt
+
+<span class="code-comment"># Install frontend dependencies</span>
+<span class="code-keyword">cd</span> frontend
+<span class="code-function">npm</span> install
+
+<span class="code-comment"># Start services</span>
+<span class="code-keyword">cd</span> backend && <span class="code-function">uvicorn</span> main:app --reload --port 8000
+                            </code>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 20px 0 15px; color: #1a1a2e;">Environment Configuration</h3>
+                    <p>Create a <code>.env</code> file in the project root:</p>
+                    <div class="code-block">
+                        <code>
+<span class="code-string">OPENAI_API_KEY</span>=your_api_key_here
+<span class="code-string">SECRET_KEY</span>=your_secret_key_here
+<span class="code-string">REDIS_HOST</span>=localhost
+<span class="code-string">REDIS_PORT</span>=6379
+                        </code>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 系统架构 -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="architecture">系统架构</h2>
+
+                <div class="zh active">
+                    <div class="architecture">
 multimodal-analysis-agent/
 ├── backend/                    # 后端服务目录
 │   ├── agents/               # Agent 核心模块
-│   │   ├── __init__.py
 │   │   ├── orchestrator.py   # 任务编排器
-│   │   ├── analyzer.py        # 分析 Agent
-│   │   ├── visualizer.py      # 可视化 Agent
-│   │   ├── planner.py         # 任务规划器
-│   │   └── feedback_loop.py   # 反馈闭环模块
-│   ├── core/                 # 核心功能模块
-│   │   ├── __init__.py
-│   │   ├── config.py          # 配置管理
-│   │   ├── logging.py         # 日志系统
-│   │   └── exceptions.py      # 异常定义
+│   │   ├── analyzer.py       # 数据分析器
+│   │   ├── visualizer.py     # 可视化生成器
+│   │   ├── planner.py        # 任务规划器
+│   │   └── feedback_loop.py  # 反馈闭环模块 ⭐
 │   ├── processors/           # 数据处理器
-│   │   ├── __init__.py
-│   │   ├── text_processor.py  # 文本处理
-│   │   ├── image_processor.py # 图像处理
-│   │   ├── audio_processor.py # 音频处理
-│   │   └── video_processor.py # 视频处理
-│   ├── visualization/         # 可视化模块
-│   │   ├── __init__.py
-│   │   ├── chart_generator.py # 图表生成
-│   │   ├── dashboard.py       # 仪表盘生成
-│   │   └── exporters.py       # 导出功能
-│   ├── api/                  # API 接口
-│   │   ├── __init__.py
-│   │   ├── routes.py          # 路由定义
-│   │   ├── schemas.py          # 数据模型
-│   │   └── middleware.py       # 中间件
-│   └── utils/                # 工具函数
-│       ├── __init__.py
-│       ├── file_handler.py    # 文件处理
-│       └── validators.py      # 数据验证
-├── frontend/                  # 前端应用目录
-│   ├── src/
-│   │   ├── components/        # React 组件
-│   │   ├── pages/            # 页面组件
-│   │   ├── hooks/            # 自定义 Hooks
-│   │   ├── utils/            # 工具函数
-│   │   └── types/            # TypeScript 类型定义
-│   └── public/               # 静态资源
-├── docs/                      # 项目文档
-├── config/                    # 配置文件
-├── scripts/                   # 脚本工具
-├── tests/                     # 测试用例
-├── README.md                  # 项目说明文档
-├── requirements.txt          # Python 依赖
-├── package.json              # Node.js 依赖
-└── LICENSE                   # 许可证文件
-```
-
----
-
-## 核心模块说明
-
-### Agent 协调器
-
-Agent 协调器是系统的核心控制单元，负责接收用户请求、解析任务意图、分解复杂任务、协调各处理模块以及整合最终结果。协调器采用事件驱动的架构设计，通过消息队列实现模块间的异步通信，确保系统的高并发处理能力。
-
-协调器的主要功能包括：任务接收与验证，验证输入数据的有效性和格式正确性；任务分解与规划，将复杂任务拆分为可执行的子任务序列；资源调度与分配，根据任务特征分配合适的处理资源；状态监控与容错，实时监控任务执行状态，处理异常情况并实现自动恢复。
-
-### 多模态处理器
-
-多模态处理器负责各类数据格式的预处理和特征提取。系统针对不同数据类型采用了专用的处理策略。
-
-文本处理器支持多种文本格式的读取，包括纯文本、JSON、CSV、Markdown 等。处理流程包括文本清洗、分词、词性标注、实体识别和语义向量化。对于中文文本，系统集成了中文分词和词向量模型，能够准确理解中文语义。
-
-图像处理器支持常见图像格式，包括 JPG、PNG、GIF、WebP 等。处理流程包括图像加载、尺寸标准化、色彩空间转换、特征提取和分类标注。系统集成了预训练的图像识别模型，能够识别上千种常见物体和场景。
-
-音频处理器支持 MP3、WAV、AAC 等音频格式。处理流程包括音频解码、采样率转换、梅尔频谱计算、特征提取和语音识别。对于包含语音的音频，系统能够自动进行语音转文字处理。
-
-视频处理器支持 MP4、AVI、MOV 等视频格式。处理流程包括视频解码、帧提取、场景检测、关键帧识别和内容摘要。系统能够从视频中提取关键信息，生成视频内容的文本描述。
-
-### 数据分析引擎
-
-数据分析引擎是系统的分析能力核心，提供多种数据分析方法的支持。统计分析模块支持描述性统计、相关性分析、回归分析和假设检验等统计分析方法。用户可以指定分析变量、选择分析方法、设置参数，系统自动执行分析并返回结果。
-
-趋势分析模块用于识别数据中的时间序列模式和趋势变化。系统支持移动平均、指数平滑、季节性分解等方法，能够准确预测未来走势。用户可以设置预测时间范围和置信水平，获得专业的趋势预测报告。
-
-聚类分析模块实现数据的自动分组和模式发现。系统支持 K-Means、层次聚类、DBSCAN 等多种聚类算法。用户可以指定聚类数量或让系统自动确定最优聚类数，获得清晰的客户细分或类别划分结果。
-
-关联分析模块用于发现数据项之间的关联关系。系统实现了 Apriori 和 FP-Growth 等经典关联规则挖掘算法，能够从交易数据或行为数据中发现有价值的关联模式。
-
-### 可视化生成器
-
-可视化生成器根据数据特征和分析目标自动选择最优的可视化方案。系统内置了丰富的图表类型支持，包括折线图、柱状图、饼图、散点图、热力图、雷达图、漏斗图、地图等基本图表类型，以及桑基图、词云图、关系图、仪表盘等高级可视化组件。
-
-图表生成采用声明式的配置方式，用户只需指定数据源和基本参数，系统自动完成数据绑定、坐标轴配置、样式渲染等复杂工作。生成的图表支持交互操作，包括缩放、平移、数据点悬停提示、图例筛选等功能。
-
-仪表盘功能支持将多个图表组合成完整的数据展示页面。用户可以自定义仪表盘的布局、配色和交互行为，系统支持响应式设计，确保在不同设备上都有良好的显示效果。
-
-### API 接口
-
-系统提供完整的 RESTful API 接口，支持外部系统的集成调用。接口设计遵循 OpenAPI 规范，提供完整的接口文档。认证方式采用 Bearer Token，确保接口访问的安全性。
-
-主要 API 端点包括：任务提交接口用于上传数据和创建分析任务；任务状态查询接口用于查看任务执行进度；结果获取接口用于下载分析报告和可视化图表；WebSocket 接口支持实时推送分析进度和结果。
-
-### 反馈闭环模块
-
-反馈闭环模块是系统的自我检查和持续改进引擎，由结果验证器、错误检测器和自我修正器三个核心组件构成。
-
-结果验证器提供多级别、多维度的结果验证功能，支持基础验证（数据格式、类型检查）、中级验证（完整性、一致性检查）和高级验证（语义、逻辑检查）。系统内置多种默认验证规则，同时支持自定义验证规则的添加和注册。
-
-错误检测器能够识别分析结果中的多种异常和错误模式，包括空值检测、异常值检测、缺失数据检测、类型不匹配检测和空结果检测等。每个错误模式都有对应的严重程度评估，便于后续处理。
-
-自我修正器根据错误检测结果自动调整参数并提供修正建议。系统支持多种修正策略，包括重试策略（调整参数后重新执行）、阈值调整策略（优化检测阈值）、方法替换策略（切换到替代分析方法）和数据缩减策略（采用采样方式处理）。
-
-反馈闭环管理器协调验证器、错误检测器和自我修正器工作，实现完整的控制循环。任务执行后自动进入验证阶段，如果验证失败则根据错误类型应用相应的修正策略，最多支持三次修正尝试。系统持续记录性能指标和策略成功率，用于后续的策略优化。
-
-反馈模块的 API 接口包括：结果验证接口用于检查数据质量；错误检测接口用于识别异常模式；结果修正接口用于执行自动修正；性能指标接口用于查看系统运行统计；完整闭环接口用于执行整个验证-检测-修正流程。
-
----
-
-## 使用指南
-
-### 通过前端界面使用
-
-前端界面提供了直观的图形化操作方式。用户首先登录系统，进入主界面后可以看见清晰的功能导航栏。通过点击相应功能入口，用户可以完成数据上传、任务创建、结果查看等操作。
-
-在数据上传环节，用户可以将本地文件拖拽到上传区域，系统自动识别文件类型并显示上传进度。数据上传完成后，用户可以预览数据内容，确认数据格式正确。
-
-创建分析任务时，用户选择数据源后，系统会智能推荐适合的分析方法。用户也可以手动选择分析方法，设置分析参数。任务创建后，系统实时显示分析进度，用户可以在任务执行过程中查看中间结果。
-
-分析完成后，用户可以在结果页面查看详细报告和可视化图表。系统支持图表的交互操作和数据导出功能，用户可以将结果导出为图片、PDF 或 Excel 格式。
-
-### 通过 API 调用
-
-系统 API 支持程序化的访问方式，便于集成到现有系统中。以下是基本的 API 调用流程。
-
-首先进行身份认证，获取访问令牌：
-
-```python
-import requests
-
-response = requests.post(
-    "http://localhost:8000/api/v1/auth/token",
-    json={"username": "your_username", "password": "your_password"}
-)
-token = response.json()["access_token"]
-```
-
-然后上传数据文件：
-
-```python
-files = {"file": open("data.csv", "rb")}
-headers = {"Authorization": f"Bearer {token}"}
-response = requests.post(
-    "http://localhost:8000/api/v1/data/upload",
-    files=files,
-    headers=headers
-)
-data_id = response.json()["data_id"]
-```
-
-提交分析任务：
-
-```python
-task_payload = {
-    "data_id": data_id,
-    "analysis_type": "trend_analysis",
-    "parameters": {"period": "monthly", "forecast_periods": 12}
-}
-response = requests.post(
-    "http://localhost:8000/api/v1/tasks",
-    json=task_payload,
-    headers=headers
-)
-task_id = response.json()["task_id"]
-```
-
-查询任务状态并获取结果：
-
-```python
-while True:
-    response = requests.get(
-        f"http://localhost:8000/api/v1/tasks/{task_id}",
-        headers=headers
-    )
-    status = response.json()["status"]
-    if status == "completed":
-        result = response.json()["result"]
-        break
-    elif status == "failed":
-        raise Exception("Task failed")
-```
-
----
-
-## 扩展开发
-
-### 添加新的数据处理器
-
-系统采用插件化的架构设计，便于添加新的数据处理器。要添加新的处理器，需要继承基类并实现相应的接口方法。
-
-首先，创建新的处理器类：
-
-```python
-from processors.base import BaseProcessor
-
-class CustomProcessor(BaseProcessor):
-    def __init__(self):
-        super().__init__()
-        self.supported_formats = [".custom"]
-
-    def process(self, data, options=None):
-        # 实现自定义处理逻辑
-        processed_data = self._custom_processing(data)
-        return processed_data
-
-    def validate(self, data):
-        # 添加数据验证逻辑
-        return True
-```
-
-然后，在处理器注册表中添加新处理器：
-
-```python
-from processors.registry import ProcessorRegistry
-
-registry = ProcessorRegistry.get_instance()
-registry.register("custom", CustomProcessor)
-```
-
-### 添加新的分析方法
-
-分析方法同样采用插件化的设计。首先创建分析器类：
-
-```python
-from analysis.base import BaseAnalyzer
-
-class CustomAnalyzer(BaseAnalyzer):
-    def analyze(self, data, parameters):
-        # 实现自定义分析逻辑
-        results = self._custom_analysis(data, parameters)
-        return results
-```
-
-然后注册新的分析器：
-
-```python
-from analysis.registry import AnalyzerRegistry
-
-registry = AnalyzerRegistry.get_instance()
-registry.register("custom_analysis", CustomAnalyzer)
-```
-
-### 添加新的可视化类型
-
-扩展可视化能力需要创建新的图表生成器：
-
-```python
-from visualization.base import BaseChartGenerator
-
-class CustomChartGenerator(BaseChartGenerator):
-    def generate(self, data, config):
-        # 实现自定义图表生成逻辑
-        chart = self._render_chart(data, config)
-        return chart
-```
-
----
-
-## 配置说明
-
-### 系统配置
-
-系统配置通过 `config/settings.yaml` 文件进行管理。主要配置项包括服务端口、日志级别、数据存储路径等。配置采用分层设计，支持环境变量覆盖和命令行参数修改。
-
-### Agent 配置
-
-Agent 行为通过 `config/agent_config.yaml` 进行配置。关键配置项包括：任务超时时间、重试次数、并发限制、缓存策略等。通过调整这些参数，可以优化系统性能和资源利用率。
-
-### 处理器配置
-
-各类数据处理器通过 `config/processors.yaml` 进行配置。每种处理器可以独立设置参数，例如图像处理器的分辨率限制、文本处理器的语言模型选择等。
-
----
-
-## 测试说明
-
-### 运行测试
-
-项目包含完整的测试用例，覆盖核心功能的各个方面。运行所有测试：
-
-```bash
-pytest tests/ -v
-```
-
-运行特定模块的测试：
-
-```bash
-pytest tests/test_agents/ -v
-pytest tests/test_processors/ -v
-```
-
-### 编写测试
-
-新增功能需要同步添加测试用例。测试文件放在 `tests/` 目录下，采用 `test_` 前缀命名。测试应该覆盖正常流程和异常情况的处理。
-
----
-
-## 贡献指南
-
-欢迎为本项目贡献代码和文档。在提交贡献之前，请确保：代码符合项目的代码规范；新增功能包含相应的测试用例；文档已经同步更新；所有测试用例能够通过。
-
-提交 Pull Request 时，请详细描述修改内容和动机，以便维护者审核。
-
----
-
-## 许可证
-
-本项目采用 MIT 许可证开源。许可证允许自由使用、修改和分发代码，但需要保留版权声明。详细信息请参阅 LICENSE 文件。
-
----
-
-## 联系方式
-
-如有问题或建议，请通过以下方式联系：提交 GitHub Issue；发送邮件至项目维护者邮箱；加入项目讨论群组。
-
-感谢您对本项目的关注和支持！
+│   │   ├── text_processor.py # 文本处理
+│   │   ├── image_processor.py# 图像处理
+│   │   ├── audio_processor.py# 音频处理
+│   │   └── video_processor.py# 视频处理
+│   ├── api/routes.py        # API 接口
+│   └── core/                # 核心功能
+├── frontend/                # 前端应用
+├── docs/                    # 项目文档
+└── config/                  # 配置文件
+                    </div>
+                </div>
+
+                <div class="en">
+                    <div class="architecture">
+multimodal-analysis-agent/
+├── backend/                    # Backend Service
+│   ├── agents/               # Agent Core Modules
+│   │   ├── orchestrator.py   # Task Orchestrator
+│   │   ├── analyzer.py       # Data Analyzer
+│   │   ├── visualizer.py     # Chart Visualizer
+│   │   ├── planner.py        # Task Planner
+│   │   └── feedback_loop.py  # Feedback Loop ⭐
+│   ├── processors/           # Data Processors
+│   │   ├── text_processor.py # Text Processing
+│   │   ├── image_processor.py# Image Processing
+│   │   ├── audio_processor.py# Audio Processing
+│   │   └── video_processor.py# Video Processing
+│   ├── api/routes.py        # API Routes
+│   └── core/                # Core Functions
+├── frontend/                # Frontend Application
+├── docs/                    # Documentation
+└── config/                  # Configuration
+                    </div>
+                </div>
+            </section>
+
+            <!-- 核心模块 -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="modules">核心模块</h2>
+
+                <div class="zh active">
+                    <h3 style="color: #7c3aed; margin: 15px 0;">🤖 Agent 协调器</h3>
+                    <p>系统的核心控制单元，负责接收用户请求、解析任务意图、分解复杂任务、协调各处理模块以及整合最终结果。</p>
+
+                    <h3 style="color: #7c3aed; margin: 15px 0;">📝 多模态处理器</h3>
+                    <p>支持文本、图像、音频、视频四种数据格式的预处理和特征提取。</p>
+
+                    <h3 style="color: #7c3aed; margin: 15px 0;">📈 数据分析引擎</h3>
+                    <p>提供统计分析、趋势分析、聚类分析、相关性分析、回归分析等多种分析方法。</p>
+
+                    <h3 style="color: #7c3aed; margin: 15px 0;">📊 可视化生成器</h3>
+                    <p>支持折线图、柱状图、散点图、热力图、雷达图等 10+ 图表类型。</p>
+
+                    <h3 style="color: #7c3aed; margin: 15px 0;">🔄 反馈闭环模块</h3>
+                    <p>结果验证器 + 错误检测器 + 自我修正器，实现自我检查和持续改进。</p>
+                </div>
+
+                <div class="en">
+                    <h3 style="color: #7c3aed; margin: 15px 0;">🤖 Agent Orchestrator</h3>
+                    <p>The core control unit responsible for receiving user requests, parsing task intent, decomposing complex tasks, coordinating processing modules, and integrating final results.</p>
+
+                    <h3 style="color: #7c3aed; margin: 15px 0;">📝 Multimodal Processors</h3>
+                    <p>Support preprocessing and feature extraction for text, image, audio, and video data formats.</p>
+
+                    <h3 style="color: #7c3aed; margin: 15px 0;">📈 Data Analysis Engine</h3>
+                    <p>Provide statistical analysis, trend analysis, clustering, correlation analysis, regression analysis, and more.</p>
+
+                    <h3 style="color: #7c3aed; margin: 15px 0;">📊 Visualization Generator</h3>
+                    <p>Support 10+ chart types including line, bar, scatter, heatmap, radar, and more.</p>
+
+                    <h3 style="color: #7c3aed; margin: 15px 0;">🔄 Feedback Loop Module</h3>
+                    <p>Result Validator + Error Detector + Self-Corrector for self-inspection and continuous improvement.</p>
+                </div>
+            </section>
+
+            <!-- API 接口 -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="api">API 接口</h2>
+
+                <div class="zh active">
+                    <div class="api-grid">
+                        <div class="api-item">
+                            <span class="api-method post">POST</span>
+                            <div class="api-path">/api/v1/tasks</div>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 8px;">创建分析任务</p>
+                        </div>
+                        <div class="api-item">
+                            <span class="api-method get">GET</span>
+                            <div class="api-path">/api/v1/tasks/{id}</div>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 8px;">查询任务状态</p>
+                        </div>
+                        <div class="api-item">
+                            <span class="api-method post">POST</span>
+                            <div class="api-path">/api/v1/analyze</div>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 8px;">执行数据分析</p>
+                        </div>
+                        <div class="api-item">
+                            <span class="api-method post">POST</span>
+                            <div class="api-path">/api/v1/visualize</div>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 8px;">生成可视化</p>
+                        </div>
+                        <div class="api-item">
+                            <span class="api-method post">POST</span>
+                            <div class="api-path">/api/v1/feedback/validate</div>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 8px;">验证结果</p>
+                        </div>
+                        <div class="api-item">
+                            <span class="api-method post">POST</span>
+                            <div class="api-path">/api/v1/feedback/correct</div>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 8px;">自我修正</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="en">
+                    <div class="api-grid">
+                        <div class="api-item">
+                            <span class="api-method post">POST</span>
+                            <div class="api-path">/api/v1/tasks</div>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 8px;">Create Analysis Task</p>
+                        </div>
+                        <div class="api-item">
+                            <span class="api-method get">GET</span>
+                            <div class="api-path">/api/v1/tasks/{id}</div>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 8px;">Query Task Status</p>
+                        </div>
+                        <div class="api-item">
+                            <span class="api-method post">POST</span>
+                            <div class="api-path">/api/v1/analyze</div>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 8px;">Execute Data Analysis</p>
+                        </div>
+                        <div class="api-item">
+                            <span class="api-method post">POST</span>
+                            <div class="api-path">/api/v1/visualize</div>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 8px;">Generate Visualization</p>
+                        </div>
+                        <div class="api-item">
+                            <span class="api-method post">POST</span>
+                            <div class="api-path">/api/v1/feedback/validate</div>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 8px;">Validate Results</p>
+                        </div>
+                        <div class="api-item">
+                            <span class="api-method post">POST</span>
+                            <div class="api-path">/api/v1/feedback/correct</div>
+                            <p style="font-size: 0.85rem; color: #64748b; margin-top: 8px;">Self-Correction</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 技术栈 -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="techstack">技术栈</h2>
+
+                <div class="zh active">
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🐍</div>
+                            <div class="feature-title">Python</div>
+                            <div class="feature-desc">FastAPI, LangChain, Pandas, NumPy, Scikit-learn</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⚛️</div>
+                            <div class="feature-title">React</div>
+                            <div class="feature-desc">React 18, TypeScript, TailwindCSS, Plotly</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🧠</div>
+                            <div class="feature-title">AI/ML</div>
+                            <div class="feature-desc">OpenAI API, LangChain, Transformers, PyTorch</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📦</div>
+                            <div class="feature-title">Data</div>
+                            <div class="feature-desc">Pandas, NumPy, SciPy, Librosa, OpenCV</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="en">
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🐍</div>
+                            <div class="feature-title">Python</div>
+                            <div class="feature-desc">FastAPI, LangChain, Pandas, NumPy, Scikit-learn</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⚛️</div>
+                            <div class="feature-title">React</div>
+                            <div class="feature-desc">React 18, TypeScript, TailwindCSS, Plotly</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🧠</div>
+                            <div class="feature-title">AI/ML</div>
+                            <div class="feature-desc">OpenAI API, LangChain, Transformers, PyTorch</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📦</div>
+                            <div class="feature-title">Data</div>
+                            <div class="feature-desc">Pandas, NumPy, SciPy, Librosa, OpenCV</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 贡献 -->
+            <section class="section">
+                <h2 class="section-title" data-i18n="contributing">贡献指南</h2>
+
+                <div class="zh active">
+                    <p>欢迎贡献代码！请参阅 <a href="CONTRIBUTING.md" style="color: #7c3aed;">CONTRIBUTING.md</a> 了解如何参与项目开发。</p>
+                    <p style="margin-top: 15px;">项目采用 MIT 许可证开源。</p>
+                </div>
+
+                <div class="en">
+                    <p>Contributions are welcome! Please see <a href="CONTRIBUTING.md" style="color: #7c3aed;">CONTRIBUTING.md</a> for how to participate in project development.</p>
+                    <p style="margin-top: 15px;">This project is open source under the MIT License.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="https://github.com/yourusername/multimodal-analysis-agent" class="footer-link">GitHub</a>
+                <a href="https://github.com/yourusername/multimodal-analysis-agent/issues" class="footer-link">Issues</a>
+                <a href="https://github.com/yourusername/multimodal-analysis-agent/discussions" class="footer-link">Discussions</a>
+            </div>
+            <p class="copyright">© 2024 Multimodal Analysis Agent. MIT License.</p>
+        </footer>
+    </div>
+
+    <script>
+        // 语言切换功能
+        const langBtns = document.querySelectorAll('.lang-btn');
+        const zhContents = document.querySelectorAll('.zh');
+        const enContents = document.querySelectorAll('.en');
+
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.dataset.lang;
+
+                // 更新按钮状态
+                langBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // 切换内容显示
+                if (lang === 'zh') {
+                    zhContents.forEach(el => el.classList.add('active'));
+                    enContents.forEach(el => el.classList.remove('active'));
+                    document.documentElement.lang = 'zh-CN';
+                } else {
+                    enContents.forEach(el => el.classList.add('active'));
+                    zhContents.forEach(el => el.classList.remove('active'));
+                    document.documentElement.lang = 'en';
+                }
+            });
+        });
+
+        // 键盘快捷键支持
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'l' && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                const currentLang = document.querySelector('.lang-btn.active').dataset.lang;
+                const nextLang = currentLang === 'zh' ? 'en' : 'zh';
+                document.querySelector(`[data-lang="${nextLang}"]`).click();
+            }
+        });
+    </script>
+</body>
+</html>
