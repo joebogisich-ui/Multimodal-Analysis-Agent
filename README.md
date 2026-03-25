@@ -1,13 +1,4 @@
----
-AIGC:
-    ContentProducer: Minimax Agent AI
-    ContentPropagator: Minimax Agent AI
-    Label: AIGC
-    ProduceID: "00000000000000000000000000000000"
-    PropagateID: "00000000000000000000000000000000"
-    ReservedCode1: 304502204d18c8ce2e5be32377427acf5d310cfc3ad7b7267828c77d696bdac911267b4d022100c958b098f5b6741e1db75c8c128ada6ce6b022a16b7fa3cb5c7636099d225ba7
-    ReservedCode2: 3046022100b3281b0718d60885e66934907d1f536dd8495dac372125229f8cc682ad1ab2f7022100e31947fa5b16efb7641b341820a9246443d44fe579714109d5922870901bdc90
----
+
 
 # 基于多模态内容理解的全自动化数据分析可视化 Agent 系统
 
@@ -48,7 +39,7 @@ AIGC:
 首先，克隆项目仓库到本地：
 
 ```bash
-git clone https://github.com/yourusername/multimodal-analysis-agent.git
+git clone https://github.com/joebogisich-ui/multimodal-analysis-agent.git
 cd multimodal-analysis-agent
 ```
 
